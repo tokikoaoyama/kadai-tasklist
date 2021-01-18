@@ -1,26 +1,29 @@
-<h1>To Do List</h1>
-<% if @tasks.any? %>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>status</th>
-                <th>to do list</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @tasks.each do |task| %>
+<% if logged_in? %>
+    <h1>TaskList</h1>
+    <% if @tasks.any? %>
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td><%= link_to task.id, task %></td>
-                    <td><%= task.status %></td>
-                    <td><%= task.content %></td>
+                    <th>id</th>
+                    <th>status</th>
+                    <th>tasklist</th>
                 </tr>
-            <% end %>
-        </tbody>
-    </table>
-    <div>
-        <%= paginate @tasks %>
-    </div>
+            </thead>
+            <tbody>
+                <% @tasks.each do |task| %>
+                    <tr>
+                        <td><%= link_to task.id, task %></td>
+                        <td><%= task.status %></td>
+                        <td><%= task.content %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <div>
+            <%= paginate @tasks %>
+        </div>
+        <%= link_to 'Create Task', new_task_path, class: "btn btn-primary" %>
+    <% end %>
+    <% else %>
+        <%= render 'sessions/new' %>
 <% end %>
-
-<%= link_to 'Create Task', new_task_path, class: "btn btn-primary" %>
