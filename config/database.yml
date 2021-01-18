@@ -13,9 +13,9 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: root
-  password:
-  host: localhost
+  username: message-board_production
+  password: message-board
+  host: <%= ENV['MESSAGE-BOARD_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
