@@ -1,6 +1,5 @@
 <% if logged_in? %>
     <h1>TaskList</h1>
-    <% if @tasks.any? %>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -23,7 +22,6 @@
             <%= paginate @tasks %>
         </div>
         <%= link_to 'Create Task', new_task_path, class: "btn btn-primary" %>
-    <% end %>
     <% else %>
         <%= render 'sessions/new' %>
 <% end %>

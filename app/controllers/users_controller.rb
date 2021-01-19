@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.order(id: :desc).page.params([:page]).per(25)
+    @users = User.order(id: :desc).page(params[:page]).per(25)
   end
   
   def show
@@ -15,9 +15,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = 'You have successfully registered!'
-      redirect_to @task
+      redirect_to tasks_url
     else
-      flash[:danger] = 'Failed to register :('
+      flash.now[:danger] = 'Failed to register :('
       render :new
     end
   end
